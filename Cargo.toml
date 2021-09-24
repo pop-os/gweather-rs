@@ -1,0 +1,16 @@
+[package]
+name = "gweather"
+edition = "2018"
+version = "0.1.0"
+
+[lib]
+name = "gweather"
+
+[dependencies]
+ffi = { package = "gweather-sys", path = "./sys" }
+glib = "0.14"
+libc = "0.2"
+
+[workspace]
+members = ["sys"]
+exclude = ["gir"]

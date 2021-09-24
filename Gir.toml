@@ -1,0 +1,20 @@
+[options]
+girs_directories = [".", "gir-files"]
+library = "GWeather"
+version = "3.0"
+target_path = "."
+work_mode = "normal"
+#min_cfg_version = "3.36"
+generate = [
+    "GWeather.LocationEntry",
+    "GWeather.MoonLatitude",
+    "GWeather.MoonPhase",
+    "GWeather.TimezoneMenu",
+]
+
+[[object]]
+name = "GWeather.Info"
+status = "generate"
+    [[object.function]]
+    pattern = "get_update"
+    ignore = true

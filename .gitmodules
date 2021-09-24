@@ -1,0 +1,6 @@
+[submodule "gir-files"]
+	path = gir-files
+	url = ./gir-files
+[submodule "gir"]
+	path = gir
+	url = ./gir

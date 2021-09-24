@@ -1,0 +1,51 @@
+[package]
+name = "gweather-sys"
+version = "0.0.1"
+edition = "2018"
+build = "build.rs"
+[package.metadata.system-deps.gweather_3_0]
+name = "gweather-3.0"
+version = "0.0"
+
+[package.metadata.system-deps.gweather_3_0.v3_12]
+version = "3.12"
+
+[package.metadata.system-deps.gweather_3_0.v3_36]
+version = "3.36"
+
+[package.metadata.system-deps.gweather_3_0.v3_38]
+version = "3.38"
+
+[package.metadata.system-deps.gweather_3_0.v40_0]
+version = "40.0"
+
+[package.metadata.system-deps.gweather_3_0.v40]
+version = "40"
+[package.metadata.docs.rs]
+features = ["dox"]
+
+[lib]
+name = "gweather_sys"
+
+[dependencies]
+libc = "0.2"
+gdk-pixbuf-sys = "0.14"
+gio-sys = "0.14"
+glib-sys = "0.14"
+gobject-sys = "0.14"
+gtk-sys = "0.14"
+
+[build-dependencies]
+system-deps = "5"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
+
+[features]
+v3_12 = []
+v3_36 = ["v3_12"]
+v3_38 = ["v3_36"]
+v40_0 = ["v3_38"]
+v40 = ["v40_0"]
+dox = []
