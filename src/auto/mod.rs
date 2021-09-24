@@ -12,6 +12,9 @@ pub use self::location_entry::{LocationEntry, NONE_LOCATION_ENTRY};
 mod timezone_menu;
 pub use self::timezone_menu::{TimezoneMenu, NONE_TIMEZONE_MENU};
 
+mod location;
+pub use self::location::Location;
+
 mod alias;
 pub use self::alias::MoonLatitude;
 pub use self::alias::MoonPhase;

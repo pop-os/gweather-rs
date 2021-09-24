@@ -3,6 +3,7 @@
 // from gir-files (./gir-files @ 38b7451)
 // DO NOT EDIT
 
+use crate::Location;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -24,7 +25,7 @@ glib::wrapper! {
 
 impl LocationEntry {
     //#[doc(alias = "gweather_location_entry_new")]
-    //pub fn new(top: /*Ignored*/&Location) -> LocationEntry {
+    //pub fn new(top: &Location) -> LocationEntry {
     //    unsafe { TODO: call ffi:gweather_location_entry_new() }
     //}
 }
@@ -32,9 +33,9 @@ impl LocationEntry {
 pub const NONE_LOCATION_ENTRY: Option<&LocationEntry> = None;
 
 pub trait LocationEntryExt: 'static {
-    //#[doc(alias = "gweather_location_entry_get_location")]
-    //#[doc(alias = "get_location")]
-    //fn location(&self) -> /*Ignored*/Option<Location>;
+    #[doc(alias = "gweather_location_entry_get_location")]
+    #[doc(alias = "get_location")]
+    fn location(&self) -> Option<Location>;
 
     #[doc(alias = "gweather_location_entry_has_custom_text")]
     fn has_custom_text(&self) -> bool;
@@ -42,8 +43,8 @@ pub trait LocationEntryExt: 'static {
     #[doc(alias = "gweather_location_entry_set_city")]
     fn set_city(&self, city_name: Option<&str>, code: &str) -> bool;
 
-    //#[doc(alias = "gweather_location_entry_set_location")]
-    //fn set_location(&self, loc: /*Ignored*/Option<&Location>);
+    #[doc(alias = "gweather_location_entry_set_location")]
+    fn set_location(&self, loc: Option<&Location>);
 
     #[doc(alias = "show-named-timezones")]
     fn shows_named_timezones(&self) -> bool;
@@ -53,9 +54,11 @@ pub trait LocationEntryExt: 'static {
 }
 
 impl<O: IsA<LocationEntry>> LocationEntryExt for O {
-    //fn location(&self) -> /*Ignored*/Option<Location> {
-    //    unsafe { TODO: call ffi:gweather_location_entry_get_location() }
-    //}
+    fn location(&self) -> Option<Location> {
+        unsafe {
+            from_glib_full(ffi::gweather_location_entry_get_location(self.as_ref().to_glib_none().0))
+        }
+    }
 
     fn has_custom_text(&self) -> bool {
         unsafe {
@@ -69,9 +72,11 @@ impl<O: IsA<LocationEntry>> LocationEntryExt for O {
         }
     }
 
-    //fn set_location(&self, loc: /*Ignored*/Option<&Location>) {
-    //    unsafe { TODO: call ffi:gweather_location_entry_set_location() }
-    //}
+    fn set_location(&self, loc: Option<&Location>) {
+        unsafe {
+            ffi::gweather_location_entry_set_location(self.as_ref().to_glib_none().0, loc.to_glib_none().0);
+        }
+    }
 
     fn shows_named_timezones(&self) -> bool {
         unsafe {

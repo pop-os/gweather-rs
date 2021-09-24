@@ -6,9 +6,12 @@ target_path = "."
 work_mode = "normal"
 #min_cfg_version = "3.36"
 generate = [
+    #"GWeather.Conditions",
+    "GWeather.Location",
     "GWeather.LocationEntry",
     "GWeather.MoonLatitude",
     "GWeather.MoonPhase",
+    #"GWeather.Timezone",
     "GWeather.TimezoneMenu",
 ]
 

@@ -23,7 +23,7 @@ glib::wrapper! {
 
 impl TimezoneMenu {
     //#[doc(alias = "gweather_timezone_menu_new")]
-    //pub fn new(top: /*Ignored*/&Location) -> TimezoneMenu {
+    //pub fn new(top: &Location) -> TimezoneMenu {
     //    unsafe { TODO: call ffi:gweather_timezone_menu_new() }
     //}
 }

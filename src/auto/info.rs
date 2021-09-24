@@ -3,6 +3,7 @@
 // from gir-files (./gir-files @ 38b7451)
 // DO NOT EDIT
 
+use crate::Location;
 use crate::MoonLatitude;
 use crate::MoonPhase;
 use glib::object::ObjectType as ObjectType_;
@@ -24,10 +25,12 @@ glib::wrapper! {
 }
 
 impl Info {
-    //#[doc(alias = "gweather_info_new")]
-    //pub fn new(location: /*Ignored*/Option<&Location>) -> Info {
-    //    unsafe { TODO: call ffi:gweather_info_new() }
-    //}
+    #[doc(alias = "gweather_info_new")]
+    pub fn new(location: Option<&Location>) -> Info {
+        unsafe {
+            from_glib_full(ffi::gweather_info_new(location.to_glib_none().0))
+        }
+    }
 
     #[doc(alias = "gweather_info_abort")]
     pub fn abort(&self) {
@@ -114,11 +117,13 @@ impl Info {
         }
     }
 
-    //#[doc(alias = "gweather_info_get_location")]
-    //#[doc(alias = "get_location")]
-    //pub fn location(&self) -> /*Ignored*/Option<Location> {
-    //    unsafe { TODO: call ffi:gweather_info_get_location() }
-    //}
+    #[doc(alias = "gweather_info_get_location")]
+    #[doc(alias = "get_location")]
+    pub fn location(&self) -> Option<Location> {
+        unsafe {
+            from_glib_none(ffi::gweather_info_get_location(self.to_glib_none().0))
+        }
+    }
 
     #[doc(alias = "gweather_info_get_location_name")]
     #[doc(alias = "get_location_name")]
@@ -389,10 +394,12 @@ impl Info {
     //    unsafe { TODO: call ffi:gweather_info_set_enabled_providers() }
     //}
 
-    //#[doc(alias = "gweather_info_set_location")]
-    //pub fn set_location(&self, location: /*Ignored*/Option<&Location>) {
-    //    unsafe { TODO: call ffi:gweather_info_set_location() }
-    //}
+    #[doc(alias = "gweather_info_set_location")]
+    pub fn set_location(&self, location: Option<&Location>) {
+        unsafe {
+            ffi::gweather_info_set_location(self.to_glib_none().0, location.to_glib_none().0);
+        }
+    }
 
     #[doc(alias = "gweather_info_update")]
     pub fn update(&self) {
