@@ -3,6 +3,8 @@ name = "gweather-sys"
 version = "0.0.1"
 edition = "2018"
 build = "build.rs"
+license = "MIT"
+
 [package.metadata.system-deps.gweather_3_0]
 name = "gweather-3.0"
 version = "0.0"
